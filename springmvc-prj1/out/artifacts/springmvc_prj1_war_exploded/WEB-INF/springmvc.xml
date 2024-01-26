@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+<!--    &lt;!&ndash; 简化配置，相当于配置了 HandlerMapping、HandlerAdapter、-->
+<!--    HandlerExceptionResolver 三个特殊的 Bean，且在容器中注册了一系列支持 HTTP 消-->
+<!--    息转换的 Bean &ndash;&gt;-->
+<!--    <mvc:annotation-driven/>-->
+<!--    &lt;!&ndash; 配置 Spring 自动扫描指定包及其子包中的所有 Bean &ndash;&gt;-->
+<!--    <context:component-scan base-package="cn.edu.zjut.controller"/>-->
+<!--&lt;!&ndash;    增加配置使得 Spring 自动扫描指定 service 包及其子包中的所有 Bean&ndash;&gt;-->
+<!--    <context:component-scan base-package="cn.edu.zjut.service"/>-->
+<!--&lt;!&ndash;    <bean name="/login"&ndash;&gt;-->
+<!--&lt;!&ndash;          class="cn.edu.zjut.controller.UserController">&ndash;&gt;-->
+<!--&lt;!&ndash;        <property name="userServ" ref="userService"/>&ndash;&gt;-->
+<!--&lt;!&ndash;    </bean>&ndash;&gt;-->
+<!--&lt;!&ndash;    <bean id="userService" class="cn.edu.zjut.service.UserService"/>&ndash;&gt;-->
+<!--    &lt;!&ndash; ViewResolver &ndash;&gt;-->
+<!--    <bean-->
+<!--            class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="internalResourceViewResolver">-->
+<!--        &lt;!&ndash; 前缀 &ndash;&gt;-->
+<!--        <property name="prefix" value="/"/>-->
+<!--        &lt;!&ndash; 后缀 &ndash;&gt;-->
+<!--        <property name="suffix" value=".jsp"/>-->
+<!--    </bean>-->
+
+<!--第三题-->
+<!--    使用扫描机制扫描控制器类-->
+    <context:component-scan base-package="cn.edu.zjut.controller"/>
+    <mvc:annotation-driven/>
+<!--    annotation-driven用于简化开发的配置，注解DefaultAnnotationHandlerMapping和AnnotationMethodHandlerAdapter-->
+<!--    使用resources过滤掉不需要dispatch-driven，否则resources元素会阻止任意控制器被调用-->
+<!--    配置静态资源，允许js目录下的所有文件可见-->
+    <mvc:resources mapping="/js/**" location="/js/"></mvc:resources>
+<!--    配置视图解析器-->
+    <bean
+            class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="internalResourceViewResolver">
+        <!-- 前缀 -->
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <!-- 后缀 -->
+        <property name="suffix" value=".jsp"/>
+    </bean>
+</beans>
